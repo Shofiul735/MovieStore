@@ -1,0 +1,41 @@
+﻿@model VidlyWeb.ViewModels.AddCustomerViewModel
+
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<h1>Edit Form </h1>
+
+<form class="form" asp-controller="Customer" asp-action="Edit" method="post">
+    <input asp-for="Customer.Id" hidden/>
+    <div class="form-group mt-3">
+        <label asp-for="Customer.Name"></label>
+        <input asp-for="Customer.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Customer.Name"> </span>
+    </div>
+
+    <div class="form-group mt-3">
+        <label asp-for="Customer.MembershipTypeId"></label>
+        <select asp-for="Customer.MembershipTypeId" asp-items="Model.MembershipTypes"></select>
+        <span class="text-danger" asp-validation-for="Customer.MembershipTypeId"> </span>
+    </div>
+
+    <div class="form-group mt-3">
+        <label asp-for="Customer.BirthDate"></label>
+        <input class="form-control" asp-for="Customer.BirthDate" />
+        <span class="text-danger" asp-validation-for="Customer.BirthDate"> </span>
+    </div>
+
+    <div class="form-group mt-3">
+        <label asp-for="Customer.IsSubscribeToNewsletter"></label>
+        <input asp-for="Customer.IsSubscribeToNewsletter" />
+        <span class="text-danger" asp-validation-for="Customer.IsSubscribeToNewsletter"> </span>
+    </div>
+    <input class="btn btn-outline-success mt-3 font-weight-bold" type="submit" value="Update" />
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

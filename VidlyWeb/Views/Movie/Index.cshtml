@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["title"] = "Movies";
+}
+
+@if (TempData["MovieAdd"] != null){
+    <h3 class="text-success"> @TempData["MovieAdd"] </h3>
+}
+@if (TempData["MovieDeleted"] != null)
+{
+    <h3 class="text-danger"> @TempData["MovieDeleted"] </h3>
+}
+
+<h1> List of Movies </h1>
+<a class="btn btn-primary" asp-controller="Movie" asp-action="AddMovie">Add a movie</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Movie Name
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model){
+            <tr>
+                <td><a asp-controller="Movie" asp-action="Details" asp-route-id="@i.Id">@i.Name</a></td>
+                <td>@i.Genre.Name</td>
+                <td>
+                    <div class="d-flex gap-1">
+                        <a class="btn btn-outline-primary" asp-controller="Movie" asp-action="Edit" asp-route-id="@i.Id">Edit</a>
+                        <a class="btn btn-outline-danger" asp-controller="Movie" asp-action="Delete" asp-route-id="@i.Id" > Delete </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

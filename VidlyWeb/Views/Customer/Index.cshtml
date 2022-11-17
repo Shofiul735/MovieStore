@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+
+@if (TempData["CustomerAdded"] != null){
+    <h3 class="text-success"> @TempData["CustomerAdded"] </h3>
+}
+else if (TempData["CustomerAddFailed"] != null)
+{
+    <h3 class="text-danger"> @TempData["CustomerAddFailed"] </h3>
+}
+
+@if (TempData["CustomerDeleted"] != null){
+    <h3 class="text-success"> @TempData["CustomerDeleted"] </h3>
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1> Customers</h1>
+    <a class="btn btn-outline-primary" asp-controller="Customer" asp-action="NewCustomer"> Add a new customer</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Membership Type</th>
+            <th scope="col"> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+         @foreach(var i in Model){
+            <tr>
+                <td> <a asp-controller="Customer" asp-action="UserDetails" asp-route-id="@i.Id">@i.Name </a></td>
+                <td>  @i.MembershipType.MembershipTypeName </td>
+                <td> 
+                    <div class="d-flex flex-row gap-1">
+                        <a class="btn btn-outline-primary" asp-controller="Customer" asp-action="Edit" asp-route-id="@i.Id"> Edit </a>
+                        <a class="btn btn-outline-danger" asp-controller="Customer" asp-action="Delete" asp-route-id="@i.Id"> Delete </a>
+                    </div>
+                 </td>
+            </tr>
+            <tr>
+                
+            </tr>
+          }
+        
+    </tbody>
+</table>
+

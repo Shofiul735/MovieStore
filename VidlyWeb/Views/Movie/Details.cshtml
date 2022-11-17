@@ -1,0 +1,12 @@
+﻿@model Movie
+@{
+    ViewData["title"] = $"{Model.Name}";
+}
+
+<h1> @Model.Name </h1>
+<ul>
+    <li>Genre: @Model.Genre.Name</li>
+    <li>Relese Date: @Model.ReleaseDate</li>
+    <li>Date Added: @Model.DateAdded</li>
+    <li>Number in Stock: @Model.NumberInStock</li>
+</ul>

@@ -1,0 +1,38 @@
+﻿@model VidlyWeb.ViewModels.MovieAndGenreViewModel
+
+@{
+    ViewData["title"] = Model.Movie.Name;
+}
+
+<h1> Edit Movie </h1>
+
+<form class="form" asp-controller="Movie" asp-action="Edit">
+    <input asp-for="@Model.Movie.Id" type="hidden"/>
+    <div class="form-group mt-3">
+        <label asp-for="@Model.Movie.Name"></label>
+        <input class="form-control" asp-for="@Model.Movie.Name" />
+        <span asp-validation-for="@Model.Movie.Name"></span>
+    </div>
+    <div class="form-group mt-3">
+        <label asp-for="@Model.Movie.ReleaseDate"></label>
+        <input class="form-control" asp-for="@Model.Movie.ReleaseDate" />
+        <span asp-validation-for="@Model.Movie.ReleaseDate" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <label asp-for="@Model.Movie.NumberInStock"></label>
+        <input class="form-control" asp-for="@Model.Movie.NumberInStock" />
+        <span asp-validation-for="@Model.Movie.NumberInStock" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <label asp-for="@Model.Movie.GenreId"></label>
+        <select class="form-control" asp-for="@Model.Movie.GenreId" asp-items="@Model.Genres"> </select>
+        <span asp-validation-for="@Model.Movie.GenreId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-3"> Add Movie </button>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
